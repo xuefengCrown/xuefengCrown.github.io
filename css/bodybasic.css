@@ -1,0 +1,94 @@
+html, body {
+	height: 100%;
+}
+body {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+#header {
+	
+}
+#nav li {
+	margin-left: 10px;
+	display: inline;
+}
+h1 {
+	font-family: 'Monotype Corsiva', impact;
+}
+#container {
+	width: 80%;
+	height: 100%;
+	
+	margin-left: auto;
+	margin-right: auto;
+}
+#content {
+	background-color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	margin-top: 30px;
+}
+#content li {
+	list-style-type: none;
+}
+#content #intro {
+	font-family: "Microsoft YaHei", Arial, sans-serif;
+	font-size: .95em;
+	font-style: light;
+	line-height: 1.5em;
+	margin: 20px 5% 20px 5%;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+a:link {
+	color: blue;
+	text-decoration: none;}
+a:visited {
+	olor: gray;}
+a:hover {
+	color: black;
+	text-decoration: underline;}
+a:active {
+	color: darkcyan;}
+#links-nav {
+	position: fixed;
+	font-weight: bold;
+	right: 300px;
+	top: 145px;
+}
+#links-nav a:hover {
+	color: red;
+}
+.links-topic {
+	color: red;
+	font-weight: bold;
+}
+
+#content #books-iLike {
+	width: 80%;
+	margin: 0 auto 0 auto;
+}
+
+#content #iLinks {
+	margin-left: 50px;
+}
+#books-iLike-principle {
+	font-style: italic;
+	font-size: .8em;
+	letter-spacing: .2em;
+	font-weight: lighter;
+}
+#whatIbelieve {
+	font-style: italic;
+	font-size: .8em;
+	letter-spacing: .1em;
+	font-weight: lighter;
+}
+#footer {
+	width: 100%;
+	margin: 20px 0 20px 0;
+	padding 10px;
+	text-align: center;
+}
