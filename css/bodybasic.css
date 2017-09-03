@@ -27,6 +27,9 @@ h1 {
 	padding-bottom: 10px;
 	margin-bottom: 20px;
 	margin-top: 30px;
+	/*added 2017.8.29*/
+	border-radius: 15px;
+	/*added 2017.8.29*/
 }
 #content li {
 	list-style-type: none;
@@ -92,3 +95,10 @@ a:active {
 	padding 10px;
 	text-align: center;
 }
+/* added-2017.8.29 高亮显示目标*/
+#english-dic-online:target span, #music-movies:target span,
+#code:target span, #fun-math:target span, #books-online:target span,
+#webTechnology:target span {
+	background-color: gray;
+}
+/* added-2017.8.29 高亮显示目标*/
