@@ -95,10 +95,10 @@ a:active {
 	padding 10px;
 	text-align: center;
 }
-/* added-2017.8.29 高亮显示目标*/
+
 #english-dic-online:target span, #music-movies:target span,
 #code:target span, #fun-math:target span, #books-online:target span,
 #webTechnology:target span {
 	background-color: gray;
 }
-/* added-2017.8.29 高亮显示目标*/
+
