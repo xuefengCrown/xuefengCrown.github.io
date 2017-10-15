@@ -23,12 +23,12 @@
 			<br />队列<a href="https://en.wikipedia.org/wiki/Queue_(abstract_data_type)">(queue-wiki)</a>
 				规定：添加元素到尾部，删除头部元素，以及
 			得到队列中元素个数。当需要收集对象并按照“先进先出”操作时，使用队列。<br />
-			public interface Queue&lt;E&gt; // a simplified form of the interface in the standard library
-			{
-				void add(E element);
-				E remove();
-				int size();
-			}
+			public interface Queue&lt;E&gt; // a simplified form of the interface in the standard library<br/>
+			{<br/>
+				void add(E element);<br/>
+				E remove();<br/>
+				int size();<br/>
+			}<br/>
 			<br />接口不会告诉你任何关于内部实现的信息。实际上，有两种常规的队列实现:循环数组
 			实现或者链表实现。
 			<br />每个实现类都要实现Queue接口。<br />
