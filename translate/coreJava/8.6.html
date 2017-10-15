@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xml:lang="en">
+	<head>
+		<title>MATTERS</title>
+		<style type="text/css">
+			body{
+				margin:0;
+				padding:0;
+			}
+			#container{
+				width: 80%;
+				border: 1px solid blue;
+				padding-left: 15px;
+				padding-right: 30px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.book{
+				color: blue;
+				text-align: right;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="../../../bootstrap.css">
+		<base target="_blank" />
+	</head>
+	<body>
+		<div id="container">
+			<ol type='I'>
+			<li>
+			<p>
+				<h4>8.6 泛型使用注意事项</h4>
+				下面讨论泛型使用限制。大部分都是类型擦除（type erasure）造成的。
+				<h4>8.6.1 类型参数实例化时，不能使用基本数据类型</h4>
+				Pair&lt;double&gt; 是错的， Pair&lt;Double&gt;是对的。原因在于类型擦除。
+				类型擦除后，Pair 类中实例变量为Object，自然不能用来存储double值。
+				
+				<h4>8.6.2 运行时类型检查只对原类型有用</h4>
+				虚拟机中的对象都是特定的非泛型类型。因此，所有类型检查的结果只能是原类型(raw type)。
+				例如：<br />
+				if (a instanceof Pair&lt;String&gt;) // Error <br />
+				if (a instanceof Pair) // Error <br />
+				或者，类型转换时<br />
+				Pair&lt;String&gt; p = (Pair&lt;String&gt;) a; // Warning--can only test that a is a Pair <br />
+				当检查一个对象是否属于某泛型类，使用instanceof会得到一个编译错误，使用casts类型
+				转换会得到一个警告。<br />
+				同样原因，getClass()方法返回值也是原类型（raw type）。例子:<br/>
+				Pair&lt;String&gt; stringPair = ...; <br />
+				Pair&lt;Employee&gt; employeePair = ...; <br />
+				if (stringPair.getClass() == employeePair.getClass()) // 结果为真<br />
+				结果为真，因为它们都返回Pair.class <br />
+				
+				<h4>8.6.3 不能创建参数化类型的数组(Arrays of Parameterized Types)</h4>
+				如：Pair&lt;String&gt;[] table = new Pair&lt;String&gt;[10]; // Error <br />
+				为什么？类型擦除后，table的类型是 Pair[]。你可以把它转化为Object[]:
+				Object[] objarray = table; <br />
+				不过，数组记得它的元素类型，当你存进一个错误类型的元素时它会抛出一个异常:
+				ArrayStoreException: objarray[0] = "Hello"; // Error--component type is Pair<br />
+				但擦除会使得此判定机制对泛型无效。考虑赋值 objarray[0] = new Pair&lt;Employee&gt;();<br />
+				能通过数组存储检查，但仍会导致类型错误。因此，参数化类型数组时不合法的。
+				<br />TIP: 如果你需要聚合参数化类型对象，使用Arraylist: ArrayList&lt;Pair&lt;String&gt;&gt;
+				安全又有效。
+			</p>
+			</li>
+			</ol>
+		</div>
+	</body>
+</html>
