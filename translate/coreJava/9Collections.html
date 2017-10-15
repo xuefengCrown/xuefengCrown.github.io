@@ -32,9 +32,18 @@
 			<br />接口不会告诉你任何关于内部实现的信息。实际上，有两种常规的队列实现:循环数组
 			实现或者链表实现。
 			<br />每个实现类都要实现Queue接口。<br />
-			<h4></h4>
-			
-			<h4></h4>
+			一旦集合被构造，你不需要知道它的具体实现。使用接口类型来引用集合。<br />
+			Queue&lt;Customer&gt; expressLane = new CircularArrayQueue&lt;&gt;(100);<br />
+			expressLane.add(new Customer("Harry"));<br />
+			使用这种方法，如果你改变注意，你可以很方便的切换实现。只需要在构造器调用
+			处修改即可。如果你想改用LinkedListQueue，<br />
+			Queue&lt;Customer&gt; expressLane = new LinkedListQueue&lt;&gt;(100);<br />
+			expressLane.add(new Customer("Harry"));<br />
+			为什么你会选择一种实现而不是另一种？接口没有告诉你某种实现的效率如何。循环
+			数组某种程度上比脸比实现要高效些，所以经常被使用。然而，也有其他代价。<br />
+			循环数组是有限的——它有固定容量。如果你不清楚集合元素数量的最大值，还是选择链表
+			实现。<br />
+			在你学习API文档时，你可能碰到AbstractQueue。它是队列的部分实现，更易于扩展。
 			</p>
 			</li>
 			</ol>
