@@ -98,7 +98,38 @@
 			Iterator&lt;String&gt; it = c.iterator();<br/>
 			it.next(); // skip over the first element<br/>
 			it.remove(); // now remove it<br/>
-				
+			<h4>9.1.4 处理泛型的通用方法(Generic Utility Methods)</h4>
+			Collection和Iterator接口是泛型的（Generic），这意味着你可以写一个通用方法来
+			操作任意类型的集合。下面是一个检测给定集合是否包含给定元素的通用方法：<br/>
+			public static &lt;E&gt; boolean contains(Collection&lt;E&gt c, Object obj)<br/>
+			{<br/>
+			for (E element : c)<br/>
+			&nbsp;if (element.equals(obj))<br/>
+			&nbsp;&nbsp;return true;<br/>
+			return false;<br/>
+			}<br/>
+			java库的设计者认为像这样的通用方法是如此有用，所以java库应该包含这些方法。
+			如此，应用程序员就不必自己再造轮子了。（上面的contains方法就是其中之一）<br/>
+			实际上，Collection接口声明了（declare）很多有用的方法，它的实现类都必须实现的。
+			其中有<br/>
+			int size()<br/>
+			boolean isEmpty()<br/>
+			boolean contains(Object obj)<br/>
+			boolean containsAll(Collection&lt;?&gt; c)<br/>
+			boolean equals(Object other)<br/>
+			boolean addAll(Collection&lt;? extends E&gt; from)<br/>
+			boolean remove(Object obj)<br/>
+			boolean removeAll(Collection&lt;?&gt; c)<br/>
+			void clear()<br/>
+			boolean retainAll(Collection&lt;?&gt; c)<br/>
+			Object[] toArray()<br/>
+			&lt;T&gt; T[] toArray(T[] arrayToFill)<br/>
+			这些方法大都无需解释(self-explanatory);如果需要，请查看API。<br/>
+			当然，每次都要实现所有这些方法很麻烦。为了让实现更容易，java库提供了
+			AbstractCollection，除了size方法和iterator，其他方法都被实现了。<br/>
+			这样，具体的集合实现类直接继承AbstractCollection即可。你需要实现iterator方法，
+			但contains已经被超类实现。然而，你如果不满意，可以覆盖它。<br/>
+			<h4>9.1.5 Collections框架中的接口</h4>	
 			</p>
 			</li>
 			</ol>
