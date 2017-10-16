@@ -59,6 +59,46 @@
 			sets不允许重复对象。（？怎样判定对象已经存在？难道每个对象不是独一无二的吗？）
 			<br >iterator方法（迭代器）返回一个实现了Iterator接口的对象。你可以使用这个迭代器
 			对象（iterator object）逐一遍历集合元素，如下节讨论的。
+				
+			<h4>9.1.3 迭代器(Iterators)</h4>
+			Iterator接口有4个方法：<br/>
+			public interface Iterator&lt;E&gt; <br/>
+			{<br/>
+				E next();<br/>
+				boolean hasNext();<br/>
+				void remove();<br/>
+				default void forEachRemaining(Consumer&lt;? super E&gt; action);<br/>
+			}<br/>
+			不断调用next方法，你就可以注意访问集合中的元素。如果到达集合的末尾，next
+			方法会抛出NoSuchElementException。因此，在next前需要hasNext方法来检测还有没有
+			元素。按照如下代码迭代集合所有元素：<br/>
+			Collection&lt;String&gt; c = . . .;<br/>
+			Iterator&lt;String&gt; iter = c.iterator();<br/>
+			while (iter.hasNext())<br/>
+			{<br/>
+			String element = iter.next();<br/>
+			do something with element<br/>
+			}<br/>
+			更简洁的，你可以使用for each 来替代while循环:
+			for (String element : c)<br/>
+			{<br/>
+			do something with element<br/>
+			}<br/>
+			编译器将for each循环转化为处理迭代器的普通循环。<br/>
+			for each对实现了Iterable接口的任何对象都有效。Collection接口继承自Iterable。因此，
+			你可以使用for each 迭代标准库的任意集合。<br/>
+			SE8,你甚至可以...<br/>
+			元素被访问顺序取决于集合类型。如果是ArrayList，迭代器从index为0开始，并依次
+			每步加1往上。如果是HashSet，则顺序随机，你可以迭代所有元素，但对于顺序你无法
+			事先确知。有些情况下元素顺序是不重要的，如计算总和或匹配元素时。<br/>
+			java标准库对迭代器的实现有个重要的不同点（如与c++相比）。java中，迭代(lookup)
+			与索引改变(position change)是同步的，你只能使用next方法向后索引元素，同时往前进。
+			<br/>
+			remove方法删除你上一次调用next返回的元素。删除集合第一个元素的代码如下：<br/>
+			Iterator&lt;String&gt; it = c.iterator();<br/>
+			it.next(); // skip over the first element<br/>
+			it.remove(); // now remove it<br/>
+				
 			</p>
 			</li>
 			</ol>
