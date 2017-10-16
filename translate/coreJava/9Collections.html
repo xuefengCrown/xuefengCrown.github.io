@@ -44,6 +44,19 @@
 			循环数组是有限的——它有固定容量。如果你不清楚集合元素数量的最大值，还是选择链表
 			实现。<br />
 			在你学习API文档时，你可能碰到AbstractQueue。它是队列的部分实现，更易于扩展。
+			Java库集合类的基础接口是Collection。它有两个根本方法：
+			public interface Collection&lt;E&gt; <br />
+			{ <br />
+			boolean add(E element);<br />
+			Iterator&lt;E&gt; iterator();<br />
+			. . .<br />
+			}<br />
+			除了这两个方法外还有其他方法，稍后再谈。<br />
+			add方法如其意。如果实际上集合变化了则返回true，否则false。例如
+			试图向set中添加一个对象，如果此对象已经存在，add对set无影响，因为
+			sets不允许重复对象。（？怎样判定对象已经存在？难道每个对象不是独一无二的吗？）
+			<br >iterator方法（迭代器）返回一个实现了Iterator接口的对象。你可以使用这个迭代器
+			对象（iterator object）逐一遍历集合元素，如下节讨论的。
 			</p>
 			</li>
 			</ol>
