@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xml:lang="en">
 	<head>
-		<title>9 集合</title>
+		<title>9.1 集合框架概述</title>
 		<link rel="stylesheet" type="text/css" href="../../../bootstrap.css" />
     		<link rel="stylesheet" type="text/css" href="base.css" />
 		<base target="_blank" />
@@ -129,7 +129,21 @@
 			AbstractCollection，除了size方法和iterator，其他方法都被实现了。<br/>
 			这样，具体的集合实现类直接继承AbstractCollection即可。你需要实现iterator方法，
 			但contains已经被超类实现。然而，你如果不满意，可以覆盖它。<br/>
-			<h4>9.1.5 Collections框架中的接口</h4>	
+			<h4>9.1.5 Collections框架中的接口</h4>
+			java集合框架针对不同集合类型定义了一系列接口。有两种基础接口：Collection和Map。
+			向collection添加元素使用add方法。<br/>
+			然而，maps（映射）中是一些key/value(键值)对，需要put方法添加元素：V put(K key, V value)
+			<br/>
+			List是有序集合（ordered collection）。元素有两种访问方式：迭代器或索引。后一种称作random access。
+			说实话，集合框架在这方面的设计并不好。实际上，有两种玉虚机和，有着不同的性能。一种是
+			数组实现的，random access很快。相反，链表实现的List(LinkedList)随机访问元素时很慢，最好
+			使用迭代器。<br/>
+			Set接口同Collection接口。set不允许元素重复。set的equals方法应该保证，当两个set中元素相同时
+			它们equals，但是不需要有相同顺序。对于两个有相同元素的set，hashCode方法返回相同的值。<br/>
+			如果方法签名相同那为什么还要有不同接口？概念上来讲，不是所有集合都是sets。定义Set接口让
+			程序员能够定义只接受sets的方法。<br/>
+			SortedSet SortedMap<br/>
+			TreeSet TreeMap 以后再谈。<br/>	
 			</p>
 			</li>
 			</ol>
