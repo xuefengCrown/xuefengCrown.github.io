@@ -50,12 +50,12 @@ a:link {
 	color: blue;
 	text-decoration: none;}
 a:visited {
-	color: red;}
+	color: gray;}
 a:hover {
 	color: black;
 	text-decoration: underline;}
 a:active {
-	color: gray;
+	color: red;
 }
 	
 #links-nav {
