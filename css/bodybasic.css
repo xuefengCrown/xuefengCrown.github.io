@@ -50,12 +50,13 @@ a:link {
 	color: blue;
 	text-decoration: none;}
 a:visited {
-	olor: gray;}
+	color: gray;}
 a:hover {
 	color: black;
 	text-decoration: underline;}
 a:active {
-	color: darkcyan;}
+	color: red;}
+	
 #links-nav {
 	position: fixed;
 	font-weight: bold;
@@ -78,6 +79,11 @@ a:active {
 #content #iLinks {
 	margin-left: 50px;
 }
+
+#content #about_xuef {
+	margin-left: 50px;
+}
+
 #books-iLike-principle {
 	font-style: italic;
 	font-size: .8em;
