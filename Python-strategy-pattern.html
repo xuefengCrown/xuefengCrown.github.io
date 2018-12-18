@@ -1,0 +1,137 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>
+Python中的策略模式
+</title><link href="./css/style.css" rel="stylesheet" type="text/css"> </head>              <div class="container"><body>
+<h1>
+策略模式 in Python
+</h1>
+<h2>
+ 关注点
+</h2>
+<ul>
+<li>
+1. Python中，函数是一等公民(first-class object);
+</li>
+<li>
+2. 理解策略模式
+</li>
+</ul>
+<h2>
+ 策略模式
+</h2>
+<p>
+是指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法。
+</p>
+<h2>
+ 举个例子
+</h2>
+<h3>
+ 场景
+</h3>
+<p>
+<em>假如一个网店制定了下述折扣规则:(并且每个订单仅适用一个优惠策略)</em>
+</p>
+<ul>
+<li>
+有 1000 或以上积分的顾客，每个订单享 5% 折扣。
+</li>
+<li>
+同一订单中，单个商品的数量达到 20 个或以上，享 10% 折扣。
+</li>
+<li>
+订单中的不同商品达到 10 个或以上，享 7% 折扣。
+</li>
+</ul>
+<h3>
+ 关键概念
+</h3>
+<p>
+<em>上下文</em>
+</p>
+<p>
+把一些计算委托给实现不同算法的可互换组件，它提供服务。在这个电商示例中，上下文是 Order ，它会根据不同的算法计算促销折扣。
+</p>
+<p>
+<em>策略</em>
+</p>
+<p>
+实现不同算法的组件共同的接口。这里指打折。
+</p>
+<p>
+<em>具体策略</em>
+</p>
+<p>
+这里有三种具体打折策略。
+</p>
+<h3>
+ Python实现
+</h3>
+<pre><code>
+from collections import namedtuple
+
+Customer = namedtuple('Customer', 'name fidelity')
+
+class LineItem: # 表示购物车中的一项
+    def __init__(self, product, quantity, price):
+        self.product = product
+        self.quantity = quantity
+        self.price = price
+    
+    def total(self):
+        return self.price * self.quantity
+
+class Order: # 订单(上下文)
+    def __init__(self, customer, cart, promotion=None):
+        self.customer = customer
+        self.cart = list(cart)
+        self.promotion = promotion
+
+    def total(self):
+        if not hasattr(self, '__total'):
+            self.__total = sum(item.total() for item in self.cart)
+        return self.__total
+
+    def due(self):
+        if self.promotion is None:
+            discount = 0
+        else:
+            discount = self.promotion(self) 
+        return self.total() - discount
+
+    def __repr__(self):
+        fmt = '<Order total: {:.2f} due: {:.2f}>'
+        return fmt.format(self.total(), self.due())
+
+def fidelity_promo(order): 
+    """为积分为1000或以上的顾客提供5%折扣"""
+    return order.total() * .05 if order.customer.fidelity >= 1000 else 0
+
+def bulk_item_promo(order):
+    """单个商品为20个或以上时提供10%折扣"""
+    discount = 0
+    for item in order.cart:
+        if item.quantity >= 20:
+            discount += item.total() * .1
+    return discount
+
+def large_order_promo(order):
+    """订单中的不同商品达到10个或以上时提供7%折扣"""
+    distinct_items = {item.product for item in order.cart}
+    if len(distinct_items) >= 10:
+        return order.total() * .07
+    return 0
+
+"""选择对于用户最优的优惠策略"""
+promos = [fidelity_promo, bulk_item_promo, large_order_promo] 
+
+def best_promo(order):
+    return max(promo(order) for promo in promos)
+</code></pre>
+<h3>
+ 参考
+</h3>
+<ul>
+<li>
+《流畅的Python》
+</li>
+</div></body></html>
